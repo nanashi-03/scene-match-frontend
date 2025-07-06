@@ -31,15 +31,21 @@ export class Login {
   submit() {
     if (this.form.invalid) return;
     console.log(this.form.value)
+    this.isLoading.set(true);
 
     this.auth.login(this.form.value as { username: string; password: string }).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: () => this.error.set('Invalid credentials')
+      next: () => {
+        this.router.navigate(['/'])
+      },
+      error: () => {
+        this.error.set('Invalid credentials')
+        this.isLoading.set(false);
+      }
     });
   }
 
   navigate(path: string, message: string) {
-    this.router.navigate([path]);
     this.snack.open(message, 'Close', { duration: 3000 });
+    this.router.navigate([path]);
   }
 }

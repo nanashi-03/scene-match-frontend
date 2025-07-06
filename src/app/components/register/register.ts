@@ -29,15 +29,21 @@ export class Register {
 
   submit() {
     if (this.form.invalid) return;
+    this.isLoading.set(true);
 
     this.auth.register(this.form.value as { username: string; password: string }).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: () => this.error.set('Registration failed')
+      next: () => {
+        this.router.navigate(['/'])
+      },
+      error: () => {
+        this.error.set('Registration failed')
+        this.isLoading.set(false);
+      }
     });
   }
 
   navigate(path: string, message: string) {
-    this.router.navigate([path]);
     this.snack.open(message, 'Close', { duration: 3000 });
+    this.router.navigate([path]);
   }
 }
