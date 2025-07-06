@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --text: #e7ebef;
+    --background-blue: #2b3e50;
+    --background-black: #1c1c1c;
+    --primary: #99b8db;
+    --secondary: #582d82;
+    --accent: #b84bc0;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, var(--background-black), var(--background-blue));
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+a:hover {
+    cursor: pointer;
+}
+

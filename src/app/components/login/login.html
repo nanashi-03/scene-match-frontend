@@ -1,0 +1,23 @@
+@if(error()) {
+    {{ navigate('/', error()) }}
+}
+@if(auth.isAuthenticated()) {
+    {{ navigate('/', 'Already logged in') }}
+} 
+@else {
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Login</h2>
+        <label>Username:
+            <input formControlName="username">
+        </label>
+        <label>Password:
+            <input type="password" formControlName="password">
+        </label>
+        @if (isLoading()) {
+            <button disabled type="submit"><app-spinner /></button>
+        }
+        @else {
+            <button type="submit">Login</button>
+        }
+    </form>
+}

@@ -1,0 +1,18 @@
+<div class="all-movies">
+    <div class="movie-grid" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+        (scrolled)="loadMoreMovies()">
+        <ng-container *ngFor="let movie of movies()">
+            <div class="movie-card-container">
+                <app-movie-card [movie]="movie"></app-movie-card>
+                <div class="badges">
+                    <span *ngIf="isLiked(movie)" class="badge liked">❤️ Liked</span>
+                    <span *ngIf="isWatched(movie)" class="badge watched">✓ Watched</span>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <p *ngIf="noMoreMovies() && movies().length === 0">
+        No movies found.
+    </p>
+</div>

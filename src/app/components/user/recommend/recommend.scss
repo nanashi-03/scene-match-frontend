@@ -1,0 +1,37 @@
+.recommendations-grid,
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+
+    .movie-card-container {
+        flex: 1 1 300px;
+        max-width: 400px;
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .badges {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+
+        .badge {
+            background: #eee;
+            border-radius: 4px;
+            padding: 0.2rem 0.4rem;
+            font-size: 0.75rem;
+
+            &.liked {
+                color: #e74c3c;
+            }
+
+            &.watched {
+                color: #27ae60;
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+.movie-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  
+    .card-content {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: flex-start;
+      background: linear-gradient(135deg, var(--background-blue), var(--background-black));
+      // border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 1rem;
+      transition: box-shadow 0.2s ease;
+      height: 100%;
+  
+      &:hover {
+        box-shadow: 0 2px 8px var(--background-black);
+      }
+    }
+  
+    .poster {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+  
+    .movie-info {
+      color: var(--text);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+  
+    .title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      overflow: hidden;
+      margin: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  
+    .release {
+      font-size: 0.85rem;
+      margin: 0.25rem 0;
+    }
+  
+    .description {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+  

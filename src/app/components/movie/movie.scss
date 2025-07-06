@@ -1,0 +1,127 @@
+.movie-detail-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--background-blue), var(--background-black));
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    .poster-container {
+        display: grid;
+        place-items: center;
+
+        .poster {
+                width: 220px;
+                height: auto;
+                border-radius: 4px;
+                object-fit: cover;
+            }
+        
+            .poster-actions {
+                display: flex;
+                gap: 12px;
+                margin-top: 12px;
+        
+                .action-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    background: var(--primary);
+                    border: 1px solid var(--text);
+                    border-radius: 4px;
+                    padding: 6px 10px;
+                    cursor: pointer;
+                    transition: background 0.2s;
+        
+                    i {
+                        font-size: 1.2rem;
+                    }
+        
+                    span {
+                        font-size: 0.95rem;
+                        font-weight: 500;
+                    }
+        
+                    &.active {
+                        background: var(--secondary);
+                        font-weight: 600;
+                    }
+                }   }
+    }
+
+    .movie-info {
+        color: var(--text);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .release-date {
+            font-size: 0.95rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .attributes-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .genres,
+            .keywords {
+                h4 {
+                    margin: 0 0 6px 0;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                }
+
+                .tags-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+
+                    .tag-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        padding: 6px 10px;
+                        border-radius: 4px;
+                        background: var(--secondary);
+
+                        .genre,
+                        .keyword {
+                            font-size: 0.95rem;
+                        }
+
+                        .icon-btn {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            padding: 0;
+                            color: #888;
+
+                            &.filled {
+                                color: #e74c3c;
+                            }
+
+                            i {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

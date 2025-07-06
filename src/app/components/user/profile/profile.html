@@ -1,0 +1,68 @@
+<div *ngIf="isLoading(); else content">
+    <app-spinner />
+</div>
+
+<ng-template #content>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="avatar">
+                <span>{{ profile().username[0] | uppercase }}</span>
+            </div>
+            <div class="user-info">
+                <h2>{{ profile().username }}</h2>
+                <p class="email">{{ profile().email }}</p>
+                <span class="role">{{ profile().role }}</span>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Liked Genres</h3>
+            <div class="genres">
+                <div class="tag-row" *ngFor="let genre of prefs().likedGenres">
+                    <span class="genre">{{ genre }}</span>
+                    <button class="icon-btn x" (click)="removeLikedGenre(genre)">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>        
+            </div>
+            <h3>Disliked Genres</h3>
+            <div class="genres">
+                <div class="tag-row" *ngFor="let genre of prefs().dislikedGenres">
+                    <span class="genre">{{ genre }}</span>
+                    <button class="icon-btn x" (click)="removeDislikedGenre(genre)">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>        
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Favorite Keywords</h3>
+            <div class="keywords">
+                <div class="tag-row" *ngFor="let keyword of prefs().likedKeywords">
+                    <span class="keyword">{{ keyword }}</span>
+                    <button class="icon-btn x" (click)="removeLikedKeyword(keyword)">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>        
+            </div>
+            <h3>Disliked Keywords</h3>
+            <div class="keywords">
+                <div class="tag-row" *ngFor="let keyword of prefs().dislikedKeywords">
+                    <span class="keyword">{{ keyword }}</span>
+                    <button class="icon-btn x" (click)="removeDislikedKeyword(keyword)">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>        
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h3>Stats</h3>
+            <div class="stats">
+                <span>Liked Movies: <b>{{ profile().likedMovies.length || 0 }}</b></span>
+                <span>Watched Movies: <b>{{ profile().watchedMovies.length || 0 }}</b></span>
+            </div>
+        </div>
+    </div>
+</ng-template>

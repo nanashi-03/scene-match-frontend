@@ -1,0 +1,13 @@
+<div *ngIf="isLoading(); else content">
+    <app-spinner />
+</div>
+
+<ng-template #content>
+    <div class="recommendations-grid">
+        <ng-container *ngFor="let movie of recommendations()">
+            <div class="movie-card-container">
+                <app-movie-card [movie]="movie"></app-movie-card>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

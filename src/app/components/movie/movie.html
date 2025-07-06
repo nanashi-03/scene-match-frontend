@@ -1,0 +1,69 @@
+<div *ngIf="isLoading(); else content">
+    <app-spinner />
+</div>
+
+<ng-template #content>
+    <div class="movie-detail-card" *ngIf="movie()">
+        <div class="poster-container">
+            <img class="poster" [src]="movie().posterPath || 'assets/placeholder.png'" [alt]="movie().title + ' poster'" />
+            @if (auth.isAuthenticated() && !isContentLoading()) {
+                <div class="poster-actions">
+                    <button class="action-btn" [ngClass]="{ active: isLiked() }" (click)="toggleLike()">
+                        <i class="fa" [ngClass]="isLiked() ? 'fa-heart' : 'fa-heart-o'" style="color: #e74c3c"></i>
+                        <span>{{ isLiked() ? 'Liked' : 'Like' }}</span>
+                    </button>
+                
+                    <button class="action-btn" [ngClass]="{ active: isWatched() }" (click)="toggleWatch()">
+                        <i class="fa" [ngClass]="isWatched() ? 'fa-eye' : 'fa-eye-slash'" style="color: #27ae60"></i>
+                        <span>{{ isWatched() ? 'Watched' : 'Watch' }}</span>
+                    </button>
+                </div>
+            } @else if (auth.isAuthenticated()) {
+                <app-spinner />
+            }
+        </div>
+        <div class="movie-info">
+            <h2>{{ movie().title }}</h2>
+            <p class="release-date">{{ movie().releaseDate | date }}</p>
+            <p class="description">{{ movie().description }}</p>
+            <div class="attributes-flex">
+                <div class="genres">
+                    <h4>Genres</h4>
+                    <div class="tags-container">
+                        <div *ngFor="let genre of movie().genres" class="tag-row">
+                            @if (auth.isAuthenticated()) {
+                                <button class="icon-btn heart" [ngClass]="{ filled: isLikedGenre(genre) }" (click)="toggleLikeGenre(genre)">
+                                    <i class="fa" [ngClass]="isLikedGenre(genre) ? 'fa-heart' : 'fa-heart-o'"></i>
+                                </button>
+                                <span class="genre">{{ genre }}</span>
+                                <button class="icon-btn x" [ngClass]="{ filled: isDislikedGenre(genre) }" (click)="toggleDislikeGenre(genre)">
+                                    <i class="fa" [ngClass]="isDislikedGenre(genre) ? 'fa-times-circle' : 'fa-times-circle-o'"></i>
+                                </button>
+                            } @else {
+                                <span class="genre">{{ genre }}</span>
+                            }
+                        </div>
+                    </div>            
+                </div>
+                <div class="keywords">
+                    <h4>Keywords</h4>
+                    <div class="tags-container">
+                        <div *ngFor="let keyword of movie().keywords" class="tag-row">
+                            @if (auth.isAuthenticated()){
+                                <button class="icon-btn heart" [ngClass]="{ filled: isLikedKeyword(keyword) }" (click)="toggleLikeKeyword(keyword)">
+                                    <i class="fa" [ngClass]="isLikedKeyword(keyword) ? 'fa-heart' : 'fa-heart-o'"></i>
+                                </button>
+                                <span class="keyword">{{ keyword }}</span>
+                                <button class="icon-btn x" [ngClass]="{ filled: isDislikedKeyword(keyword) }" (click)="toggleDislikeKeyword(keyword)">
+                                    <i class="fa" [ngClass]="isDislikedKeyword(keyword) ? 'fa-times-circle' : 'fa-times-circle-o'"></i>
+                                </button>
+                            } @else {
+                                <span class="keyword">{{ keyword }}</span>
+                            }
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
