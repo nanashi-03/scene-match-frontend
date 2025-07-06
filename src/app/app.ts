@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth';
 
@@ -10,11 +10,16 @@ import { AuthService } from './services/auth';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
+export class App implements OnInit {
   auth = inject(AuthService);
   router = inject(Router);
   protected title = 'scene-match';
+  
   logout() {
     this.auth.logout();
+  }
+
+  ngOnInit(): void {
+    this.auth?.autoLogin();
   }
 }

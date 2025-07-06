@@ -10,7 +10,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080';
   http = inject(HttpClient);
   router = inject(Router);
-  isAuthenticated = this.getToken() != null ? signal(true) : signal(false);
+  isAuthenticated = signal<boolean>(false);
 
   login(credentials: { username: string; password: string }): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, credentials).pipe(
@@ -38,5 +38,34 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  private decodeToken(token: string): any {
+    try {
+      const payload = token.split('.')[1];
+      const decoded = atob(payload);
+      return JSON.parse(decoded);
+    } catch (e) {
+      console.error('Failed to decode token', e);
+      return null;
+    }
+  }
+
+  isTokenExpired(token: string): boolean {
+    const decoded = this.decodeToken(token);
+    if (!decoded?.exp) {
+      return true;
+    }
+    const expiry = decoded.exp * 1000; 
+    return Date.now() > expiry;
+  }
+
+  autoLogin() {
+    const token = this.getToken();
+    if (token && !this.isTokenExpired(token)) {
+      this.isAuthenticated.set(true);
+    } else {
+      this.logout();
+    }
   }
 }

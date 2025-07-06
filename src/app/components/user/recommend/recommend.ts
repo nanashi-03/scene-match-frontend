@@ -8,7 +8,8 @@ import { Spinner } from '../../spinner/spinner'
   standalone: true,
   selector: 'app-recommendations',
   imports: [CommonModule, MovieCard, Spinner],
-  templateUrl: 'recommend.html'
+  templateUrl: 'recommend.html',
+  styleUrl: 'recommend.scss'
 })
 export class Recommendations {
   private apiUrl = 'http://localhost:8080';

@@ -41,7 +41,7 @@ export class Movie {
           this.prefs.set(prefsData);
           this.isLiked.set(likedData.includes(movieData.tmdbId));
           this.isWatched.set(watchedData.includes(movieData.tmdbId));
-          console.log("Movie Loaded and prefs", this.movie());
+          console.log("Movie Loaded and prefs");
           this.isLoading.set(false);
         },
         error: () => {
@@ -53,7 +53,7 @@ export class Movie {
       movie$.subscribe({
         next: (movieData) => {
           this.movie.set(movieData);
-          console.log("Only movie loaded", this.movie())
+          console.log("Only movie loaded")
           this.isLoading.set(false);
         },
         error: () => {
@@ -214,9 +214,7 @@ export class Movie {
           this.movie.set(movieData);
           this.prefs.set(prefsData);
           this.isLiked.set(likedData.includes(movieData.tmdbId));
-          console.log(this.isLiked())
           this.isWatched.set(watchedData.includes(movieData.tmdbId));
-          console.log(this.isWatched())
           this.isContentLoading.set(false);
         },
         error: () => {
