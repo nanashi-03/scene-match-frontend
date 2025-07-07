@@ -1,4 +1,4 @@
-# SceneMatchFrontend
+# Scene Match Frontend
 
 This is the frontend of the SceneMatch project. It is a web application that allows users to specify what kind of movies they like and then finds movies that match their preferences. The application is built using Angular and is hosted on a server.
 
