@@ -1,6 +1,13 @@
 # SceneMatchFrontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
+This is the frontend of the SceneMatch project. It is a web application that allows users to specify what kind of movies they like and then finds movies that match their preferences. The application is built using Angular and is hosted on a server.
+
+It has the following features:
+
+- User registration and login: Users can create an account and log in to the application using a username and password. Auto logs in the user if they have a valid jwt token in their local storage.
+- User profile page: Users can view their profile information, including their username, email, and a list of their favorite genres and keywords. 
+- Movies page: Users can view a list of movies that are available in the database.
+- Recommendation page: Users can view a list of movies that match their preferences. The recommendation page uses a recommendation algorithm to suggest movies based on the user's liked genres and keywords.
 
 ## Development server
 
@@ -35,25 +42,3 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
